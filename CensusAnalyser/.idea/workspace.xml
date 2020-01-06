@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c80ee4f-b49f-4760-94c9-81f9af2ef2aa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -25,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="60">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -34,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="16" column="105" selection-start-line="16" selection-start-column="105" selection-end-line="16" selection-end-column="105" />
+            <state relative-caret-position="164">
+              <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -310,18 +311,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CensusAnalyserTest_givenCSVStateFile_whenCorrectButTypeIncorrect_ShouldReturnCustomException - 2020.01.06 at 12h 44m 32s.xml">
-      <configuration name="CensusAnalyserTest.givenCSVStateFile_whenCorrectButTypeIncorrect_ShouldReturnCustomException" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CensusAnalyserTest_givenStateCensusData_WithWrongFile_ShouldThrowException - 2020.01.06 at 12h 45m 13s.xml">
-      <configuration name="CensusAnalyserTest.givenStateCensusData_WithWrongFile_ShouldThrowException" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CensusAnalyserTest - 2020.01.06 at 12h 48m 25s.xml">
-      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CensusAnalyserTest_givenCSVStateFile_whenCorrectButTypeIncorrect_ShouldReturnCustomException - 2020.01.06 at 12h 52m 18s.xml">
-      <configuration name="CensusAnalyserTest.givenCSVStateFile_whenCorrectButTypeIncorrect_ShouldReturnCustomException" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CensusAnalyserTest_givenCSVStateFile_whenCorrectButTypeIncorrect_ShouldReturnCustomException - 2020.01.06 at 12h 52m 21s.xml">
       <configuration name="CensusAnalyserTest.givenCSVStateFile_whenCorrectButTypeIncorrect_ShouldReturnCustomException" configurationId="JUnit" />
     </history-entry>
@@ -338,6 +327,18 @@
       <configuration name="CensusAnalyserTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CensusAnalyserTest - 2020.01.06 at 14h 47m 10s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.06 at 16h 40m 03s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.06 at 17h 17m 41s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.06 at 17h 19m 43s.xml">
+      <configuration name="CensusAnalyserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CensusAnalyserTest - 2020.01.06 at 17h 21m 06s.xml">
       <configuration name="CensusAnalyserTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -526,15 +527,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/censusanalyser/CensusAnalyserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="60">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/censusanalyser/CensusAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="16" column="105" selection-start-line="16" selection-start-column="105" selection-end-line="16" selection-end-column="105" />
+        <state relative-caret-position="164">
+          <caret line="50" column="23" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
         </state>
       </provider>
     </entry>

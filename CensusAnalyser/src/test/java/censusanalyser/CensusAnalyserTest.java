@@ -42,7 +42,8 @@ public class CensusAnalyserTest {
             censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_PATH_TYPE);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
-        } }
+        }
+    }
 
     @Test
     public void whenGivenCSVFileCorrect_butDelimiterIncorrect_shouldReturnCustomException(){
@@ -52,8 +53,19 @@ public class CensusAnalyserTest {
         try {
             censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_PATH_DELIMITER);
         } catch (CensusAnalyserException e) {
-            e.printStackTrace();
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA,e.type);
         }
     }
 
+    @Test
+    public void whenGivenCSVFileCorrect_butCSVHeaderIncorrect_shouldReturnCustomException() {
+        CensusAnalyser censusAnalyser=new CensusAnalyser();
+        ExpectedException expectedException=ExpectedException.none();
+        expectedException.expect(CensusAnalyserException.class);
+        try {
+            censusAnalyser.loadIndiaCensusData(WRONG_CSV_FILE_PATH_DELIMITER);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA,e.type);
+        }
+    }
 }

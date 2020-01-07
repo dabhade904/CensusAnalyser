@@ -2,6 +2,14 @@ package censusanalyser;
 
 public class CensusAnalyserException extends Exception {
 
+    public CensusAnalyserException(String message, CSVBuilderException.ExceptionType unableToParse) {
+    }
+
+    public CensusAnalyserException(String message, String name) {
+        super(message);
+        this.type=ExceptionType.valueOf(name);
+    }
+
     enum ExceptionType {
         CENSUS_FILE_PROBLEM,UNABLE_TO_PARSE,INCORRECT_FILE_DATA;
     }

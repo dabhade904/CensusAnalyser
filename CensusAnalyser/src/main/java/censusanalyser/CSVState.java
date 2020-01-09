@@ -18,6 +18,9 @@ public class CSVState extends IndiaCensusCSV {
     @CsvBindByName(column = "StateCode" ,required =true)
     public String stateCode;
 
+    public String getStateCode() {
+        return stateCode;
+    }
 
     @Override
     public String toString() {

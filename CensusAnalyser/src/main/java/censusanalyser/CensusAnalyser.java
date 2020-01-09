@@ -4,7 +4,6 @@ import cessusanalyser.CSVBuilderException;
 import cessusanalyser.CSVBuilderFactory;
 import cessusanalyser.ICSVBuilder;
 import org.json.JSONArray;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -76,4 +75,6 @@ public class CensusAnalyser {
         System.out.println(jsonArray);
         return jsonArray;
     }
+
+
 }

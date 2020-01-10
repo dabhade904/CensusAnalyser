@@ -90,4 +90,30 @@ public class CensusAnalyser {
         }
     }
 
+    public String getStateCodeWiseSortedCensusData() throws CensusAnalyserException {
+        if (stateCensusCSVIterator == null || stateCensusCSVIterator.size()==0 ) {
+            throw new CensusAnalyserException("No Census Data",
+                    CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CSVState> csvStateComparator= Comparator.comparing(census-> census.stateCode);
+        sortingCodeWiseCSV(stateCensusCSVIterator,csvStateComparator);
+        String sortedStateCensusJson = new Gson().toJson(stateCensusCSVIterator);
+        return sortedStateCensusJson;
+    }
+
+    private void sortingCodeWiseCSV(List<CSVState> censusDAOS, Comparator<CSVState> censusCSVComparator) {
+        for (int i = 0; i < censusDAOS.size() - 1; i++) {
+            for (int j = 0; j < censusDAOS.size() - i - 1; j++) {
+                CSVState censusCSV1 = censusDAOS.get(j);
+                CSVState censusCSV2 = censusDAOS.get(j + 1);
+                if (censusCSVComparator.compare(censusCSV1, censusCSV2) > 0) {
+                    censusDAOS.set(j, censusCSV2);
+                    censusDAOS.set(j + 1, censusCSV1);
+                }
+            }
+        }
+    }
+
+
+
 }

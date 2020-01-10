@@ -103,6 +103,17 @@ public class CensusAnalyser {
         return sortedStateCensusJson;
     }
 
+    public String geStateOnAreaWiseSortedCensusData() throws CensusAnalyserException {
+        if (censusList == null || censusList.size()==0 ) {
+            throw new CensusAnalyserException("No Census Data",
+                    CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IndiaCensusDao> indiaCensusCSVComparator= Comparator.comparing(census-> census.areaInSqKm);
+        this.sortingCensusWiseCSVInDeccending(censusList,indiaCensusCSVComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.censusList);
+        return sortedStateCensusJson;
+    }
+
     private void sortingCensusWiseCSVInDeccending(List<IndiaCensusDao> censusDAOS, Comparator<IndiaCensusDao> censusCSVComparator) {
         for (int i = 0; i < censusDAOS.size() - 1; i++) {
             for (int j = 0; j < censusDAOS.size() - i - 1; j++) {

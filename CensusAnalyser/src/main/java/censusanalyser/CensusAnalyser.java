@@ -80,6 +80,30 @@ public class CensusAnalyser {
         return sortedStateCensusJson;
     }
 
+    public String getPopulationWiseSortedCensusData() throws CensusAnalyserException {
+        if (censusList == null || censusList.size()==0 ) {
+            throw new CensusAnalyserException("No Census Data",
+                    CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IndiaCensusDao> indiaCensusCSVComparator= Comparator.comparing(census-> census.population);
+        this.sortingCensusWiseCSVInDeccending(censusList,indiaCensusCSVComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.censusList);
+        return sortedStateCensusJson;
+    }
+
+    private void sortingCensusWiseCSVInDeccending(List<IndiaCensusDao> censusDAOS, Comparator<IndiaCensusDao> censusCSVComparator) {
+        for (int i = 0; i < censusDAOS.size() - 1; i++) {
+            for (int j = 0; j < censusDAOS.size() - i - 1; j++) {
+                IndiaCensusDao censusCSV1 = censusDAOS.get(j);
+                IndiaCensusDao censusCSV2 = censusDAOS.get(j + 1);
+                if (censusCSVComparator.compare(censusCSV1, censusCSV2) < 0) {
+                    censusDAOS.set(j, censusCSV2);
+                    censusDAOS.set(j + 1, censusCSV1);
+                }
+            }
+        }
+    }
+
     private void sortingCensusWiseCSV(List<IndiaCensusDao> censusDAOS, Comparator<IndiaCensusDao> censusCSVComparator) {
         for (int i = 0; i < censusDAOS.size() - 1; i++) {
             for (int j = 0; j < censusDAOS.size() - i - 1; j++) {
@@ -116,7 +140,6 @@ public class CensusAnalyser {
             }
         }
     }
-
 
 
 }

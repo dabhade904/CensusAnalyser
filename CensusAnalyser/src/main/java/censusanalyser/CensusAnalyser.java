@@ -4,6 +4,7 @@ import cessusanalyser.CSVBuilderException;
 import cessusanalyser.CSVBuilderFactory;
 import cessusanalyser.ICSVBuilder;
 import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
@@ -33,7 +35,7 @@ public class CensusAnalyser {
                 this.censusList.add(new IndiaCensusDao(csvFileList.get(i)));
                 i++;
             }
-            return this.censusList.size();
+           return this.censusList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -48,11 +50,7 @@ public class CensusAnalyser {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             List<CSVState>csvFileList = csvBuilder.getCSVFileList(reader,CSVState.class);
-            int i=0;
-            while (i < csvFileList.size()){
-                this.csvStateList.add(new CSVStateDao(csvFileList.get(i)));
-                i++;
-            }
+            csvFileList.stream().filter(stateCode -> csvFileList.add(new CSVStateDao(stateCode))).collect(Collectors.toList());
             return this.csvStateList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),

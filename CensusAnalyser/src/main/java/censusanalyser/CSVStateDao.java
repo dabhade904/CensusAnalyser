@@ -1,6 +1,6 @@
 package censusanalyser;
 
-public class CSVStateDao {
+public class CSVStateDao extends CSVState {
     private int srNo;
     private String stateName;
     private int tin;

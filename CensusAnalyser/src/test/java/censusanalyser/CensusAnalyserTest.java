@@ -288,7 +288,7 @@ public class CensusAnalyserTest {
     public void givenUSCensusCSVFile_ReturnsCorrectRecords() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            int numOfRecords = censusAnalyser.loadUSCSVData(US_CENSUS_CSV_FILE_PATH);
+            int numOfRecords = censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals(51, numOfRecords);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();

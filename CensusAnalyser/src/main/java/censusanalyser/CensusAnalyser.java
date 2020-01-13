@@ -16,28 +16,35 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static cessusanalyser.CSVBuilderFactory.createCSVBuilder;
+
 public class CensusAnalyser {
     List<CensusDao> censusList = null;
     List<CSVStateDao> csvStateList = null;
-    List<CensusDao> uscsvList=null;
 
     public CensusAnalyser(){
         this.censusList=new ArrayList<CensusDao>();
         this.csvStateList=new ArrayList<CSVStateDao>();
-        this.uscsvList=new ArrayList<CensusDao>();
     }
 
-
     public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
+        return this.loadCensusData(csvFilePath, IndiaCensusCSV.class);
+    }
+
+    public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
+        return this.loadCensusData(csvFilePath,UsCensusCSV.class);
+    }
+
+    private<E> int loadCensusData(String csvFilePath, Class<E> censusCSVClass) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            List <IndiaCensusCSV>csvFileList = csvBuilder.getCSVFileList(reader, IndiaCensusCSV.class);
-            int i=0;
-            while (i < csvFileList.size()){
-                this.censusList.add(new CensusDao(csvFileList.get(i)));
-                i++;
+            List <E> csvFileList = csvBuilder.getCSVFileList(reader, censusCSVClass);
+            if (censusCSVClass.getName().equals("censusanalyser.IndiaCensusCSV")){
+                csvFileList.stream().filter(censusData -> censusList.add(new CensusDao((IndiaCensusCSV) censusData))).collect(Collectors.toList());
+            } else if(censusCSVClass.getName().equals("censusanalyser.UsCensusCSV")) {
+                csvFileList.stream().filter(censusData -> censusList.add(new CensusDao((UsCensusCSV)censusData))).collect(Collectors.toList());
             }
-           return this.censusList.size();
+            return censusList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -50,30 +57,10 @@ public class CensusAnalyser {
 
     public int loadStateData(String csvFilePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
-            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            ICSVBuilder csvBuilder = createCSVBuilder();
             List<CSVState>csvFileList = csvBuilder.getCSVFileList(reader,CSVState.class);
             csvFileList.stream().filter(stateCode -> csvFileList.add(new CSVStateDao(stateCode))).collect(Collectors.toList());
             return this.csvStateList.size();
-        } catch (IOException e) {
-            throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-        } catch (RuntimeException e) {
-            throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
-        } catch (CSVBuilderException e) {
-            throw new CensusAnalyserException(e.getMessage(), e.type.name());
-        }
-    }
-
-    public int loadUSCSVData(String csvFilePath) throws CensusAnalyserException {
-        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            List <UsCensusCSV>csvFileList = csvBuilder.getCSVFileList(reader,UsCensusCSV.class);
-            int i=0;
-            while (i < csvFileList.size()){
-                this.uscsvList.add(new CensusDao(csvFileList.get(i)));
-                i++;
-            }
-            return this.uscsvList.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);

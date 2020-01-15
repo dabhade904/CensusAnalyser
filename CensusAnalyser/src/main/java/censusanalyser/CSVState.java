@@ -2,15 +2,15 @@ package censusanalyser;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class CSVState{
-    @CsvBindByName(column = "SrNo", required = true)
-    public int srNo;
+public class CSVState {
+    public int SrNo;
 
     @CsvBindByName(column = "StateName", required = true)
-    public String stateName;
+    public String StateName;
+    public String state;
 
     @CsvBindByName(column = "TIN", required = true)
-    public int tin;
+    public int TIN;
 
     @CsvBindByName(column = "StateCode" ,required =true)
     public String stateCode;
@@ -18,9 +18,10 @@ public class CSVState{
     @Override
     public String toString() {
         return "CSVState{" +
-                "srNo=" + srNo +
-                ", stateName='" + stateName + '\'' +
-                ", tin=" + tin +
+                "SrNo=" + SrNo +
+                ", StateName='" + StateName + '\'' +
+                ", state='" + state + '\'' +
+                ", TIN=" + TIN +
                 ", stateCode='" + stateCode + '\'' +
                 '}';
     }

@@ -14,7 +14,6 @@ public class CensusDao {
     private double populationDensity;
     private double housingDensity;
 
-
     public CensusDao(IndiaCensusCSV indiaCensusCSV){
         state=indiaCensusCSV.state;
         areaInSqKm=indiaCensusCSV.areaInSqKm;
@@ -32,8 +31,5 @@ public class CensusDao {
         landArea=usCensusCSV.landArea;
         populationDensity=usCensusCSV.populationDensity;
         housingDensity=usCensusCSV.housingDensity;
-
     }
-
-
 }

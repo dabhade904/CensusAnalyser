@@ -1,6 +1,6 @@
 package censusanalyser;
 
-public class IndiaCensusDao {
+public class IndiaCensusDao extends IndiaCensusCSV {
     public int areaInSqKm;
     public String state;
     public int population;

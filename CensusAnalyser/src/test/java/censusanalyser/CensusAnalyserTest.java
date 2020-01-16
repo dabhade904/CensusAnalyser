@@ -114,6 +114,7 @@ public class CensusAnalyserTest {
         } catch (RuntimeException r){
         }
     }
+
     @Test
     public void givenIndianCensusCsv_WithSorting_ShouldReturn1stElement() throws CensusAnalyserException{
         CensusAnalyser censusAnalyser = new CensusAnalyser();
@@ -174,7 +175,6 @@ public class CensusAnalyserTest {
         }
     }
 
-
    @Test
     public void givenIndianStateCensus_ReturnSortedHighestPopulationState() {
         try {
@@ -182,7 +182,7 @@ public class CensusAnalyserTest {
             censusAnalyser.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH,INDIA_STATE_CENSUS_CSV_FILE_PATH);
             String list = censusAnalyser.sortingIndiaCensusByPopulation();
             IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(list, IndiaCensusCSV[].class);
-            Assert.assertEquals(true, indiaCensusCSVS[0].state.contains("Sikkim"));
+            Assert.assertEquals(true, indiaCensusCSVS[28].state.contains("Sikkim"));
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
         }
@@ -194,7 +194,7 @@ public class CensusAnalyserTest {
         censusAnalyser.loadCensusData(CensusAnalyser.Country.INDIA,INDIA_CENSUS_CSV_FILE_PATH,INDIA_STATE_CENSUS_CSV_FILE_PATH);
         String list = censusAnalyser.sortingIndiaCensusByPopulation();
         IndiaCensusCSV[] indiaCensusCSVS = new Gson().fromJson(list,IndiaCensusCSV[].class);
-        Assert.assertEquals(true,indiaCensusCSVS[28].state.contains("Uttar Pradesh"));
+        Assert.assertEquals(true,indiaCensusCSVS[0].state.contains("Uttar Pradesh"));
     }
 
     @Test

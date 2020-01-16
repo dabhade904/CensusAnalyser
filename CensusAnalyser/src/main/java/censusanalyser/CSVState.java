@@ -2,7 +2,7 @@ package censusanalyser;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class CSVState{
+public class CSVState {
     @CsvBindByName(column = "SrNo", required = true)
     public int srNo;
 
@@ -12,7 +12,7 @@ public class CSVState{
     @CsvBindByName(column = "TIN", required = true)
     public int tin;
 
-    @CsvBindByName(column = "StateCode" ,required =true)
+    @CsvBindByName(column = "StateCode", required = true)
     public String stateCode;
 
     @Override

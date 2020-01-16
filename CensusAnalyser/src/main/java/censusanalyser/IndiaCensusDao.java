@@ -6,11 +6,11 @@ public class IndiaCensusDao extends IndiaCensusCSV {
     public int population;
     public int densityPerSqKm;
 
-    public IndiaCensusDao(IndiaCensusCSV indiaCensusCSV){
-        state=indiaCensusCSV.state;
-        areaInSqKm=indiaCensusCSV.areaInSqKm;
-        population=indiaCensusCSV.population;
-        densityPerSqKm=indiaCensusCSV.densityPerSqKm;
+    public IndiaCensusDao(IndiaCensusCSV indiaCensusCSV) {
+        state = indiaCensusCSV.state;
+        areaInSqKm = indiaCensusCSV.areaInSqKm;
+        population = indiaCensusCSV.population;
+        densityPerSqKm = indiaCensusCSV.densityPerSqKm;
 
     }
 

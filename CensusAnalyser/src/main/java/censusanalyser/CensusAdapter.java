@@ -16,7 +16,8 @@ import java.util.stream.StreamSupport;
 public abstract class CensusAdapter {
 
     public abstract <E> Map<String, CensusDao> loadCensusData(String... csvFilePath) throws CensusAnalyserException;
-    Map<String,CensusDao> censusStateMap = new TreeMap<>();
+
+    Map<String, CensusDao> censusStateMap = new TreeMap<>();
 
     public <E> Map<String, CensusDao> loadCensusData(Class<E> censusCSVClass, String... filePath) throws CensusAnalyserException {
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath[0]))) {
@@ -32,7 +33,7 @@ public abstract class CensusAdapter {
                         .map(UsCensusCSV.class::cast)
                         .forEach(censusCSV -> censusStateMap.put(censusCSV.stateID, new CensusDao(censusCSV)));
             }
-            return censusStateMap ;
+            return censusStateMap;
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);

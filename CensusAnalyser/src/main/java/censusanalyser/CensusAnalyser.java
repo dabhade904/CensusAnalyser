@@ -6,16 +6,24 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CensusAnalyser {
-    Map<String,CensusDao> censusList = new HashMap<>();
+    Map<String, CensusDao> censusList = new HashMap<>();
 
-    private Country country;
+    public Country country;
 
-    public enum Country{
-        INDIA,US
+    public enum Country {
+        INDIA, US
     }
 
-    public int loadCensusData (Country country, String... csvFilePath) throws CensusAnalyserException {
-        censusList = CensusAdapterFactory.getCensusData(country,csvFilePath);
+    public CensusAnalyser(Country country) {
+        this.country = country;
+    }
+
+    public CensusAnalyser() {
+        this.censusList = new HashMap<>();
+    }
+
+    public int loadCensusData(Country country, String... csvFilePath) throws CensusAnalyserException {
+        censusList = CensusAdapterFactory.getCensusData(country, csvFilePath);
         return censusList.size();
     }
 
@@ -24,9 +32,11 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Invalid File", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         List list = censusList.values().stream()
-                .sorted((data1,data2)-> data1.state.compareTo(data2.state))
+                .sorted((data1, data2) -> data1.state.compareTo(data2.state))
+                .map(census -> census.getCensusDTO(country))
                 .collect(Collectors.toList());
-        String sortedData= new Gson().toJson(list);
+        String sortedData = new Gson().toJson(list);
+        System.out.println(sortedData);
         return sortedData;
     }
 
@@ -35,10 +45,11 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Invalid File", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         List list = censusList.values().stream()
-                .sorted((data1,data2)-> data1.state.compareTo(data2.state))
+                .sorted((data1, data2) -> data1.state.compareTo(data2.state))
+                .map(census -> census.getCensusDTO(country))
                 .collect(Collectors.toList());
-        String sortedData= new Gson().toJson(list);
-      return sortedData;
+        String sortedData = new Gson().toJson(list);
+        return sortedData;
     }
 
     public String sortingIndiaCensusByPopulation() throws CensusAnalyserException {
@@ -46,9 +57,10 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Invalid data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         List list = censusList.values().stream()
-                .sorted((data1,data2)-> data1.population - data2.population > 0 ? -1 : 1)
+                .sorted((data1, data2) -> data1.population - data2.population > 0 ? -1 : 1)
+                .map(census -> census.getCensusDTO(country))
                 .collect(Collectors.toList());
-        String sortedData= new Gson().toJson(list);
+        String sortedData = new Gson().toJson(list);
         System.out.println(sortedData);
         return sortedData;
     }
@@ -58,9 +70,10 @@ public class CensusAnalyser {
             throw new CensusAnalyserException("Invalid data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         List list = censusList.values().stream()
-                .sorted((data1,data2)-> data1.densityPerSqKm - data2.densityPerSqKm > 0 ? -1 : 1)
+                .sorted((data1, data2) -> data1.densityPerSqKm - data2.densityPerSqKm > 0 ? -1 : 1)
+                .map(census -> census.getCensusDTO(country))
                 .collect(Collectors.toList());
-        String sortedData= new Gson().toJson(list);
+        String sortedData = new Gson().toJson(list);
         System.out.println(sortedData);
         return sortedData;
     }
@@ -69,14 +82,12 @@ public class CensusAnalyser {
         if ((censusList == null) || (censusList.size() == 0)) {
             throw new CensusAnalyserException("Invalid data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
-
         List list = censusList.values().stream()
-                .sorted((data1,data2)-> data1.areaInSqKm - data2.areaInSqKm > 0 ? -1 : 1)
+                .sorted((data1, data2) -> data1.areaInSqKm - data2.areaInSqKm > 0 ? -1 : 1)
+                .map(census -> census.getCensusDTO(country))
                 .collect(Collectors.toList());
-        String sortedData= new Gson().toJson(list);
+        String sortedData = new Gson().toJson(list);
         System.out.println(sortedData);
         return sortedData;
     }
-
-
 }

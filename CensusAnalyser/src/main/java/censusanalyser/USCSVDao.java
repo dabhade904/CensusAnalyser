@@ -21,6 +21,5 @@ public class USCSVDao extends UsCensusCSV {
         landArea=usCensusCSV.landArea;
         populationDensity=usCensusCSV.populationDensity;
         housingDensity=usCensusCSV.housingDensity;
-
     }
 }

@@ -1,17 +1,15 @@
 package censusanalyser;
 
 public class CSVStateDao extends CSVState {
-    public int SrNo;
-    public String StateName;
-    public String State;
-    public int TIN;
-    public String StateCode;
+    private int srNo;
+    private String stateName;
+    private int tin;
+    public String stateCode;
 
-    public CSVStateDao(CSVState csvStates) {
-        SrNo = csvStates.SrNo;
-        StateName = csvStates.StateName;
-        State = csvStates.state;
-        TIN = csvStates.TIN;
-        StateCode = csvStates.stateCode;
+    public CSVStateDao(CSVState csvState){
+        srNo=csvState.srNo;
+        stateName=csvState.stateName;
+        tin=csvState.tin;
+        stateCode=csvState.stateCode;
     }
 }
